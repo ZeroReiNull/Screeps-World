@@ -2,7 +2,7 @@ const stopSpawning = false;
 
 const harvesterNum = 2;
 const upgraderNum = 3;
-const builderNum = 1;
+const builderNum = 3;
 const minerNum = 1;
 const repairerNum = 0;
 
