@@ -1,3 +1,16 @@
+/* Thoughts:
+ - General repairer: [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE]
+    - Cost: 800
+ - Wall/rampart repairer: [WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE]
+    - Cost: 800
+ - Roadie: [WORK, CARRY, MOVE, MOVE]
+    - Cost: 250
+
+ • Might need to add a repair priority system
+
+ • Make carrier supply repairers with energy
+*/
+
 const roleRepairer = {
     run: function(creep) {
 
@@ -10,7 +23,6 @@ const roleRepairer = {
             creep.say('repair');
         }
 
-        // TODO: Add repair priority
         if (creep.memory.repairing) {
             const targets = creep.room.find(FIND_STRUCTURES, {
                 filter: object => object.hits < object.hitsMax

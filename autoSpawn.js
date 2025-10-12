@@ -1,19 +1,20 @@
 const stopSpawning = false;
 let emergencyMode = false;
 
-const harvesterNum = 2;
+const harvesterNum = 1;
 const upgraderNum = 1;
 const builderNum = 0;
 const minerNum = 1;
 const repairerNum = 0;
 
-const harvesterBody = [CARRY, CARRY, MOVE];
-const upgraderBody = [WORK, WORK, CARRY, MOVE];
-const builderBody = [WORK, WORK, CARRY, MOVE];
+const harvesterBody = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
+const upgraderBody = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE];
+const builderBody = [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
 const minerBody = [WORK, WORK, WORK, WORK, WORK, MOVE];
-const repairerBody = [WORK, WORK, CARRY, MOVE];
+// const repairerBody = [WORK, WORK, CARRY, MOVE];
+// const basicCombatCreepBody = [TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK];
 
-const spawnPriority = ['miner', 'harvester', 'upgrader', 'builder', 'repairer'];
+const spawnPriority = ['miner', 'harvester', 'upgrader', 'builder'];
 
 function getBodyCost(body) {
     return _.sum(body, part => BODYPART_COST[part]);
