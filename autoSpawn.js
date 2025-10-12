@@ -38,7 +38,7 @@ const autoSpawn = {
         }
 
         const emergencyCheck = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
-        if (emergencyCheck.length == 0) {
+        if (emergencyCheck.length == 0 && !emergencyMode) {
             emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
             emergencyMode = true;
             return;            

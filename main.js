@@ -56,24 +56,24 @@ module.exports.loop = function () {
         switch(creep.memory.role) {
             case 'harvester':
                 roleHarvester.run(creep);
-                break;
+                continue;
             case 'upgrader':
                 roleUpgrader.run(creep);
-                break;
+                continue;
             case 'builder':
                 roleBuilder.run(creep);
-                break;
+                continue;
             case 'miner':
                 roleMiner.run(creep);
-                break;
+                continue;
             /*
             case 'repairer':
                 roleRepairer.run(creep);
-                break;
+                continue;
             */
             case 'emergencyCreep':
                 roleEmergencyCreep.run(creep);
-                break;
+                continue;
         }
     }
 
@@ -93,7 +93,7 @@ module.exports.loop = function () {
         switch(structure.structureType) {
             case STRUCTURE_TOWER:
                 structureTower.run(structure);
-                break;
+                continue;
         }
     }
 }
