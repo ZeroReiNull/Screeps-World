@@ -26,6 +26,8 @@ module.exports.loop = function () {
     autoSpawn.run();
 
     // Creep
+
+/*
     for(const name in Game.creeps) {
         const creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
@@ -47,12 +49,49 @@ module.exports.loop = function () {
             roleEmergencyCreep.run(creep);
         }
     }
+*/
+
+    for (const name in Game.creeps) {
+        const creep = Game.creeps[name];
+        switch(creep.memory.role) {
+            case 'harvester':
+                roleHarvester.run(creep);
+                break;
+            case 'upgrader':
+                roleUpgrader.run(creep);
+                break;
+            case 'builder':
+                roleBuilder.run(creep);
+                break;
+            case 'miner':
+                roleMiner.run(creep);
+                break;
+            case 'repairer':
+                roleRepairer.run(creep);
+                break;
+            case 'emergencyCreep':
+                roleEmergencyCreep.run(creep);
+                break;
+        }
+    }
 
     // Structure 
+
+/*
     for (const name in Game.structures) {
         const structure = Game.structures[name];
         if(structure.structureType == STRUCTURE_TOWER) {
             structureTower.run(structure);
+        }
+    }
+*/
+
+    for (const name in Game.structures) {
+        const structure = Game.structures[name];
+        switch(structure.structureType) {
+            case STRUCTURE_TOWER:
+                structureTower.run(structure);
+                break;
         }
     }
 }
