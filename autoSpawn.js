@@ -1,6 +1,6 @@
 const stopSpawning = false;
 
-const harvesterNum = 3;
+const harvesterNum = 2;
 const upgraderNum = 1;
 const builderNum = 0;
 const minerNum = 1;
