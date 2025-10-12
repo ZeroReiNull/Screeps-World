@@ -1,10 +1,15 @@
+// Role Modules
 const roleHarvester = require('role.harvester');
 const roleUpgrader = require('role.upgrader');
 const roleBuilder = require ('role.builder');
 const roleMiner = require('role.miner');
-// const roleRepairer = require('role.repairer');
-// const structureTower = require('structure.tower');
+const roleRepairer = require('role.repairer');
+const roleEmergencyCreep = require('role.emergencyCreep');
 
+// Structure Modules
+const structureTower = require('structure.tower');
+
+// Utility Modules
 const cleanMemories = require('cleanMemories');
 const autoSpawn = require('autoSpawn');
 
@@ -16,11 +21,11 @@ module.exports.loop = function () {
         console.log('Generated a CPU pixel!');
     }
 
-    // Run Utility Functions
+    // Utility
     cleanMemories.run();
     autoSpawn.run();
 
-    // Run Creep Roles
+    // Creep
     for(const name in Game.creeps) {
         const creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
@@ -35,14 +40,19 @@ module.exports.loop = function () {
         if(creep.memory.role == 'miner') {
             roleMiner.run(creep);
         }
+        if (creep.memory.role == 'repairer') {
+            roleRepairer.run(creep);
+        }
+        if (creep.memory.role == 'emergencyCreep') {
+            roleEmergencyCreep.run(creep);
+        }
     }
-/*
-    // Run Structure Roles
+
+    // Structure 
     for (const name in Game.structures) {
         const structure = Game.structures[name];
         if(structure.structureType == STRUCTURE_TOWER) {
             structureTower.run(structure);
         }
     }
-*/
 }

@@ -1,7 +1,7 @@
-const roleHarvester = {
+const roleEmergencyCreep = {
     run: function(creep) {
 
-        if (creep.memory.delivering && creep.store[RESOURCE_ENERGY] === 0) {
+        if (creep.memory.delivering && creep.store[FIND_SOURCES] === 0) {
             creep.memory.delivering = false;
             // creep.say('collect');
         }
@@ -14,13 +14,11 @@ const roleHarvester = {
             const target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType === STRUCTURE_EXTENSION ||
-                            structure.structureType === STRUCTURE_SPAWN ||
-                            structure.structureType === STRUCTURE_TOWER) &&
+                            structure.structureType === STRUCTURE_SPAWN) &&
                            structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                 }
             });
 
-            // TODO: Add deliver priority
             if (target) {
                 if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
                     creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
@@ -40,4 +38,4 @@ const roleHarvester = {
     }
 };
 
-module.exports = roleHarvester;
+module.exports = roleEmergencyCreep;

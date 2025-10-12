@@ -1,4 +1,5 @@
 const stopSpawning = false;
+let emergencyMode = false;
 
 const harvesterNum = 2;
 const upgraderNum = 1;
@@ -18,6 +19,12 @@ function getBodyCost(body) {
     return _.sum(body, part => BODYPART_COST[part]);
 }
 
+function emergencySpawn(body, role) {
+    const newName = role.charAt(0).toUpperCase() + role.slice(1) + Game.time;
+    console.log('Spawning new ' + role + ': ' + newName);
+    Game.spawns['Capital'].spawnCreep(body, newName, {memory: {role: role}});
+}
+
 const autoSpawn = {
     run: function() {
 
@@ -27,6 +34,24 @@ const autoSpawn = {
 
         if (Game.spawns['Capital'].spawning) {
             return;
+        }
+
+        const emergencyCheck = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
+        if (emergencyCheck.length == 0) {
+            emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
+            emergencyMode = true;
+            return;            
+        }
+
+        if (emergencyMode) {
+            const creepCost = getBodyCost(minerBody);
+            if (Game.spawns['Capital'].room.energyAvailable >= creepCost) {
+                emergencySpawn(minerBody, 'miner');
+                emergencyMode = false;
+                return;
+            } else {
+                return;
+            }
         }
 
         for (const role of spawnPriority) {
