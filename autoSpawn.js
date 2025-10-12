@@ -37,21 +37,24 @@ const autoSpawn = {
             return;
         }
 
-        const emergencyCheck = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
-        if (emergencyCheck.length == 0 && !emergencyMode) {
+        const emergencyCheck_miner = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
+        if (emergencyCheck_miner.length == 0 && !emergencyMode) {
             emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
             emergencyMode = true;
             return;            
         }
 
         if (emergencyMode) {
-            const creepCost = getBodyCost(minerBody);
-            if (Game.spawns['Capital'].room.energyAvailable >= creepCost) {
-                emergencySpawn(minerBody, 'miner');
-                emergencyMode = false;
-                return;
+            const emergencyCheck_emergencyCreep = _.filter(Game.creeps, (creep) => creep.memory.role == 'emergencyCreep');
+            if (emergencyCheck_emergencyCreep.length < 2) {
+                if (Game.spawns['Capital'].room.energyAvailable >= 550) {
+                    emergencySpawn([WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE, MOVE], 'emergencyCreep');
+                    return;
+                } else {
+                    return;
+                }
             } else {
-                return;
+                emergencyMode = false;
             }
         }
 
