@@ -1,7 +1,7 @@
 const stopSpawning = false;
 
 const harvesterNum = 3;
-const upgraderNum = 3;
+const upgraderNum = 1;
 const builderNum = 0;
 const minerNum = 1;
 const repairerNum = 0;
@@ -9,7 +9,7 @@ const repairerNum = 0;
 const harvesterBody = [CARRY, CARRY, MOVE];
 const upgraderBody = [WORK, WORK, CARRY, MOVE];
 const builderBody = [WORK, WORK, CARRY, MOVE];
-const minerBody = [WORK, WORK, WORK, WORK, WORK, MOVE];
+const minerBody = [WORK, WORK, MOVE];
 const repairerBody = [WORK, WORK, CARRY, MOVE];
 
 const spawnPriority = ['miner', 'harvester', 'upgrader', 'builder', 'repairer'];
