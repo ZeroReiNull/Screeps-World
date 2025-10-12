@@ -7,9 +7,9 @@ const minerNum = 1;
 const repairerNum = 0;
 
 const harvesterBody = [CARRY, CARRY, MOVE];
-const upgraderBody = [WORK, CARRY, MOVE];
+const upgraderBody = [WORK, WORK, CARRY, MOVE];
 const builderBody = [WORK, WORK, CARRY, MOVE];
-const minerBody = [WORK, WORK, WORK, WORK, WORK, MOVE];
+const minerBody = [WORK, MOVE];
 const repairerBody = [WORK, WORK, CARRY, MOVE];
 
 const spawnPriority = ['miner', 'harvester', 'upgrader', 'builder', 'repairer'];
