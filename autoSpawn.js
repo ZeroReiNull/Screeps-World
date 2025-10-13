@@ -45,7 +45,8 @@ const autoSpawn = {
             return;            
         }
 
-        if (Memory.emergency['emergencyMode']) {
+        const emergencyMode = Memory.emergency['emergencyMode'];
+        if (emergencyMode) {
             if (Memory.emergency['emergencyCreepCount'] < 4) {
                 if (Game.spawns['Capital'].room.energyAvailable >= 550) {
                     emergencySpawn([WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE, MOVE], 'emergencyCreep');
