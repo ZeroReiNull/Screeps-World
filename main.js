@@ -11,7 +11,6 @@ const structureTower = require('structure.tower');
 
 // Utility Modules
 // const config = require('main.config');
-const initializeMemory = require('main.initializeMemory');
 const cleanMemories = require('cleanMemories');
 const autoSpawn = require('autoSpawn');
 
@@ -24,7 +23,6 @@ module.exports.loop = function () {
     }
 
     // Utility
-    initializeMemory.run();
     cleanMemories.run();
     autoSpawn.run();
 
