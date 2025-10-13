@@ -10,6 +10,7 @@ const roleEmergencyCreep = require('role.emergencyCreep');
 const structureTower = require('structure.tower');
 
 // Utility Modules
+// const config = require('main.config');
 const cleanMemories = require('cleanMemories');
 const autoSpawn = require('autoSpawn');
 
