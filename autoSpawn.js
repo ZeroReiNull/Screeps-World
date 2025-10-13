@@ -39,9 +39,6 @@ const autoSpawn = {
         if (_.size(Game.creeps) == 0) {
             console.log('No miners detected, entering emergency mode!');
             emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
-            if (!Memory.emergency) {
-                Memory.emergency = {};
-            }
             Memory.emergency.emergencyMode = true;
             Memory.emergency.emergencyCreepCount = 1;
             return;            
