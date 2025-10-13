@@ -1,11 +1,11 @@
 const initializeMemory = {
     run: function() {
-        if (!Memory.emergency) {
+        if (Memory.emergency) {
                 Memory.emergency = {
                     'emergencyMode': false,
                     'emergencyCreepCount': 0,
                 };
-            }
+        }
     }
 };
 
