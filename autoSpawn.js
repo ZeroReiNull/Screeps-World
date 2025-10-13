@@ -1,5 +1,4 @@
 const stopSpawning = false;
-let emergencyMode = false;
 
 const harvesterNum = 1;
 const upgraderNum = 1;
@@ -37,24 +36,29 @@ const autoSpawn = {
             return;
         }
 
-        const emergencyCheck_miner = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
-        if (emergencyCheck_miner.length == 0 && !emergencyMode) {
+        if (_.size(Game.creeps) == 0) {
             emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
-            emergencyMode = true;
+            Memory.emergency.emergencyMode = true;
+            console.log('No miners detected, entering emergency mode!');
+            Memory.emergency.emergencyCreepCount = 1;
             return;            
         }
 
-        if (emergencyMode) {
-            const emergencyCheck_emergencyCreep = _.filter(Game.creeps, (creep) => creep.memory.role == 'emergencyCreep');
-            if (emergencyCheck_emergencyCreep.length < 2) {
+        if (Memory.emergency.emergencyMode) {
+            if (Memory.emergency.emergencyCreepCount < 4) {
                 if (Game.spawns['Capital'].room.energyAvailable >= 550) {
                     emergencySpawn([WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE, MOVE], 'emergencyCreep');
+                    Memory.emergency.emergencyCreepCount += 1;
                     return;
                 } else {
+                    emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
+                    Memory.emergency.emergencyCreepCount += 1;
                     return;
                 }
             } else {
-                emergencyMode = false;
+                Memory.emergency.emergencyMode = false;
+                delete Memory.emergency;
+                console.log('Emergency over, resuming normal spawn operations.');
             }
         }
 
