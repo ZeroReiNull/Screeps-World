@@ -59,13 +59,6 @@ const autoSpawn = {
             return;
         }
 
-            if (!Memory.emergency) {
-                Memory.emergency = {
-                    'emergencyMode': false,
-                    'emergencyCreepCount': 0,
-                };
-            }
-
         if (Memory.emergency.emergencyMode == true) {
             if (Memory.emergency.emergencyCreepCount < 4) {
                 if (Game.spawns['Capital'].room.energyAvailable >= 300) {
