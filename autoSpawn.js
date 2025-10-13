@@ -7,7 +7,7 @@ const upgraderNum = 1;
 const builderNum = 1;
 const minerNum = 1;
 const repairerNum = 0;
-const roadieNum = 1;
+const roadieNum = 0;
 
 // Creep body configurations
 const harvesterBody = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
