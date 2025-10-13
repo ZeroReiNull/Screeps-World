@@ -52,15 +52,11 @@ const autoSpawn = {
             if (Game.spawns['Capital'].room.energyAvailable >= 300) {
                 emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
             }
-            if (!Memory.emergency) {
-                Memory.emergency = {
-                    'emergencyMode': false,
-                    'emergencyCreepCount': 0,
-                };
-            }
-            Memory.emergency.emergencyMode = true;
-            Memory.emergency.emergencyCreepCount = 1;
-            return;            
+            Memory.emergency = {
+                'emergencyMode': true,
+                'emergencyCreepCount': 1
+            };
+            return;
         }
 
         if (Memory.emergency.emergencyMode == true) {
@@ -73,7 +69,10 @@ const autoSpawn = {
                     return;
                 }
             } else {
-                delete Memory.emergency;
+                Memory.emergency = {
+                    'emergencyMode': false,
+                    'emergencyCreepCount': 0
+                };
                 console.log('Emergency over, resuming normal spawn operations.');
             }
         }
