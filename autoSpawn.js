@@ -38,7 +38,9 @@ const autoSpawn = {
 
         if (_.size(Game.creeps) == 0) {
             console.log('No miners detected, entering emergency mode!');
-            emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
+            if (Game.spawns['Capital'].room.energyAvailable >= 300) {
+                emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
+            }
             Memory.emergency.emergencyMode = true;
             Memory.emergency.emergencyCreepCount = 1;
             return;            
@@ -46,13 +48,11 @@ const autoSpawn = {
 
         if (Memory.emergency.emergencyMode == true) {
             if (Memory.emergency.emergencyCreepCount < 4) {
-                if (Game.spawns['Capital'].room.energyAvailable >= 550) {
-                    emergencySpawn([WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE, MOVE], 'emergencyCreep');
+                if (Game.spawns['Capital'].room.energyAvailable >= 300) {
+                   emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
                     Memory.emergency.emergencyCreepCount += 1;
                     return;
                 } else {
-                    emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
-                    Memory.emergency.emergencyCreepCount += 1;
                     return;
                 }
             } else {
