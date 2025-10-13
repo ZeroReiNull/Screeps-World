@@ -11,7 +11,7 @@ const structureTower = require('structure.tower');
 
 // Utility Modules
 // const config = require('main.config');
-const initializeMemory = require('main.initialize');
+const initializeMemory = require('main.initializeMemory');
 const cleanMemories = require('cleanMemories');
 const autoSpawn = require('autoSpawn');
 
