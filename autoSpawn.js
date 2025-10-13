@@ -56,6 +56,7 @@ const autoSpawn = {
                     return;
                 }
             } else {
+                delete Memory.emergency;
                 console.log('Emergency over, resuming normal spawn operations.');
             }
         }
