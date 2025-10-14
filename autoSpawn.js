@@ -2,11 +2,11 @@
 const stopSpawning = false;
 
 // Desired number of creeps per role
-const harvesterNum = 1;
+const harvesterNum = 2;
 const upgraderNum = 1;
 const builderNum = 1;
-const minerNum = 1;
-const roadieNum = 0;
+const minerNum = 2;
+const roadieNum = 1;
 
 // Creep body configurations
 const harvesterBody = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];

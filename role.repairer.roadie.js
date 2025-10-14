@@ -3,12 +3,10 @@ const roleRepairerRoadie = {
 
         if (creep.memory.repairing && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.repairing = false;
-            // creep.say('🔄 harvest');
         }
 
         if (!creep.memory.repairing && creep.store.getFreeCapacity() == 0) {
             creep.memory.repairing = true;
-            // creep.say('🚧 repair');
         }
 
         if (creep.memory.repairing) {
@@ -26,12 +24,6 @@ const roleRepairerRoadie = {
                 // Try to repair the most damaged road.
                 if (creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
-                }
-            } else {
-                // If there are no roads to repair, move to a resting position near the controller.
-                // This prevents the creep from blocking paths and saves CPU.
-                if (!creep.pos.inRangeTo(creep.room.controller, 3)) {
-                     creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' } });
                 }
             }
         } else {
