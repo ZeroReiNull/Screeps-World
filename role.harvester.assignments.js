@@ -23,7 +23,7 @@ const assignExistingHarvesters = {
         );
 
         // 3. Find all dropped resources in the room that are NOT in the list of assigned sources.
-        const availableSources = room.find(DROPPED_RESOURCES, {
+        const availableSources = room.find(FIND_DROPPED_RESOURCES, {
             filter: (source) => !assignedSourceIds.includes(source.id)
         });
 
