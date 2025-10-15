@@ -27,11 +27,11 @@ const roleHarvester = {
                 }
             }
         } else {
-            const target = Game.getObjectById(creep.memory.harvestingTargetId);
+            const harvestingTarget = Game.getObjectById(creep.memory.harvestingTargetId);
 
-            if (target) {
-                if (creep.pickup(target) === ERR_NOT_IN_RANGE) {
-                    creep.moveTo(target, { visualizePathStyle: { stroke: '#ffaa00' } });
+            if (harvestingTarget) {
+                if (creep.pickup(harvestingTarget) === ERR_NOT_IN_RANGE) {
+                    creep.moveTo(harvestingTarget, { visualizePathStyle: { stroke: '#ffaa00' } });
                 }
             }
         }
