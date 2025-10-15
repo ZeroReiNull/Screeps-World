@@ -30,7 +30,7 @@ const roleHarvester = {
             }
         } else {
             const harvestingTarget = Game.getObjectById(creep.memory.harvestingTargetId);
-            const target = harvestingTarget.pos.findClosestByPath(FIND_DROPPED_RESOURCES, {
+            const target = harvestingTarget.findClosestByPath(FIND_DROPPED_RESOURCES, {
                 filter: (resource) => resource.resourceType === RESOURCE_ENERGY
             });
 
