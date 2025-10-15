@@ -15,7 +15,7 @@ const upgraderBody = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE];
 const builderBody = [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
 const minerBody = [WORK, WORK, WORK, WORK, WORK, MOVE];
 const roadieBody = [WORK, CARRY, MOVE, MOVE];
-const wallRampartRepairerBody = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE];
+const wallRampartRepairerBody = [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
 
 // Priority order for spawning creeps
 const spawnPriority = [
