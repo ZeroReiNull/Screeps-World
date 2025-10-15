@@ -25,7 +25,9 @@ const roleHarvester = {
             if (targets.length > 0) {
                 target = targets[0];
             } else {
-                target = creep.room.storage;
+                if (creep.room.storage && creep.room.storage.store[RESOURCE_ENERGY] < MAX_STORAGE_ENERGY) {
+                    target = creep.room.storage;
+                }
             }
 
             if (target) {
