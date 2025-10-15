@@ -49,13 +49,17 @@ const autoSpawn = {
         if (!Memory.emergency) {
             Memory.emergency = {
                 'emergencyMode': false,
-                'emergencyCreepCount': 0
+                'emergencyCreepCount': 0,
+                'emergencyAnnounce': false
             };
         }
 
         if (_.size(Game.creeps) == 0 && Memory.emergency.emergencyCreepCount == 0) {
             Memory.emergency.emergencyMode = true;
-            console.log('Emergency! No creeps detected! Spawning emergency creep.');
+            if (Memory.emergency.emergencyAnnounce == false) {
+                console.log('Emergency! No creeps detected! Spawning emergency creep.');
+                Memory.emergency.emergencyAnnounce = true;
+            }
         }
 
         if (Memory.emergency.emergencyMode == true) {
@@ -68,10 +72,9 @@ const autoSpawn = {
                     return;
                 }
             } else {
-                Memory.emergency = {
-                    'emergencyMode': false,
-                    'emergencyCreepCount': 0
-                };
+                Memory.emergency.emergencyMode = false;
+                Memory.emergency.emergencyCreepCount = 0;
+                Memory.emergency.emergencyAnnounce = false;
                 console.log('Emergency over, resuming normal spawn operations.');
             }
         }
