@@ -22,20 +22,20 @@ const assignExistingHarvesters = {
             (creep) => creep.memory.harvestingTarget
         );
 
-        // 3. Find all sources in the room that are NOT in the list of assigned sources.
-        const availableSources = room.find(FIND_SOURCES, {
+        // 3. Find all dropped resources in the room that are NOT in the list of assigned sources.
+        const availableSources = room.find(DROPPED_RESOURCES, {
             filter: (source) => !assignedSourceIds.includes(source.id)
         });
 
-        // 4. Assign each unassigned harvester to an available source.
+        // 4. Assign each unassigned harvester to an available dropped resource.
         for (let i = 0; i < unassignedHarvesters.length; i++) {
-            // If there are available sources...
+            // If there are available dropped resources...
             if (i < availableSources.length) {
                 const harvester = unassignedHarvesters[i];
-                const source = availableSources[i];
+                const resource = availableSources[i];
 
-                // Assign the source's ID to the harvester's memory.
-                harvester.memory.harvestingTarget = source.id;
+                // Assign the resource's ID to the harvester's memory.
+                harvester.memory.harvestingTarget = resource.id;
             } else {
                 break;
             }
