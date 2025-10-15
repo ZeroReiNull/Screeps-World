@@ -14,6 +14,10 @@ const cleanMemories = require('cleanMemories');
 const autoSpawn = require('autoSpawn');
 const minerAssignments = require('role.miner.assignments');
 
+const myRooms = [
+    'W18S52',
+];
+
 module.exports.loop = function () {
 
     // Generate CPU Pixel
@@ -25,7 +29,10 @@ module.exports.loop = function () {
     // Utility
     cleanMemories.run();
     autoSpawn.run();
-    minerAssignments.run(Game.rooms['Capital']);
+    
+    for (const roomName of myRooms) {
+        minerAssignments.run(roomName);
+    }
 
     // Creep
     for (const name in Game.creeps) {
