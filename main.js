@@ -31,7 +31,7 @@ module.exports.loop = function () {
     autoSpawn.run();
 
     for (const roomName of myRooms) {
-        minerAssignments.run(roomName);
+        minerAssignments.run(Game.rooms[roomName]);
     }
 
     // Creep
