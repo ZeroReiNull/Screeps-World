@@ -27,7 +27,7 @@ const roleHarvester = {
                 }
             }
         } else {
-            const harvestingTarget = Game.getObjectById(creep.memory.harvestingTargetId);
+            const harvestingTarget = Game.getObjectById(creep.memory.harvestingTarget);
 
             if (harvestingTarget) {
                 if (creep.pickup(harvestingTarget) === ERR_NOT_IN_RANGE) {
