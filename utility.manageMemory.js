@@ -1,4 +1,4 @@
-const cleanMemories = {
+const manageMemory = {
 
     run: function() {
         for (const name in Memory.creeps) {
@@ -19,5 +19,4 @@ const cleanMemories = {
     }
 };
 
-module.exports = cleanMemories;
-
+module.exports = manageMemory;

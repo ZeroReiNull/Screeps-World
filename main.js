@@ -10,8 +10,8 @@ const roleEmergencyCreep = require('role.emergencyCreep');
 const structureTower = require('structure.tower');
 
 // Utility Modules
-const cleanMemories = require('cleanMemories');
-const autoSpawn = require('autoSpawn');
+const manageMemory = require('utility.manageMemory');
+const autoSpawn = require('utility.autoSpawn');
 const minerAssignments = require('role.miner.assignments');
 const harvesterAssignments = require('role.harvester.assignments');
 
@@ -29,7 +29,7 @@ module.exports.loop = function () {
     }
 
     // Utility
-    cleanMemories.run();
+    manageMemory.run();
     autoSpawn.run();
 
     for (const roomName of myRooms) {
