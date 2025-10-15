@@ -46,16 +46,16 @@ const autoSpawn = {
             return;
         }
 
-        if (_.size(Game.creeps) == 0 && Memory.emergency.emergencyCreepCount == 0) {
-            console.log('No miners detected, entering emergency mode!');
-            if (Game.spawns['Capital'].room.energyAvailable >= 300) {
-                emergencySpawn([WORK, WORK, CARRY, MOVE], 'emergencyCreep');
-            }
+        if (!Memory.emergency) {
             Memory.emergency = {
-                'emergencyMode': true,
-                'emergencyCreepCount': 1
+                'emergencyMode': false,
+                'emergencyCreepCount': 0
             };
-            return;
+        }
+
+        if (_.size(Game.creeps) == 0 && Memory.emergency.emergencyCreepCount == 0) {
+            Memory.emergency.emergencyMode = true;
+            console.log('No creeps detected! Entering emergency spawn mode.');
         }
 
         if (Memory.emergency.emergencyMode == true) {
