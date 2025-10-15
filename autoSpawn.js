@@ -55,7 +55,7 @@ const autoSpawn = {
 
         if (_.size(Game.creeps) == 0 && Memory.emergency.emergencyCreepCount == 0) {
             Memory.emergency.emergencyMode = true;
-            console.log('No creeps detected! Entering emergency spawn mode.');
+            console.log('Emergency! No creeps detected! Spawning emergency creep.');
         }
 
         if (Memory.emergency.emergencyMode == true) {
