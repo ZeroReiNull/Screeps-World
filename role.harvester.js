@@ -15,7 +15,9 @@ const roleHarvester = {
                 filter: (structure) => {
                     return (structure.structureType === STRUCTURE_EXTENSION ||
                             structure.structureType === STRUCTURE_SPAWN ||
-                            structure.structureType === STRUCTURE_TOWER) &&
+                            structure.structureType === STRUCTURE_TOWER ||
+                            (structure.structureType === STRUCTURE_STORAGE &&
+                                structure.store[RESOURCE_ENERGY] < 100000)) &&
                            structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                 }
             });
@@ -27,13 +29,13 @@ const roleHarvester = {
                 }
             }
         } else {
-            const droppedEnergy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES, {
-                filter: (d) => d.resourceType === RESOURCE_ENERGY
+            const target = harvestingTarget.pos.findClosestByPath(FIND_DROPPED_RESOURCES, {
+                filter: (resource) => resource.resourceType === RESOURCE_ENERGY
             });
 
-            if (droppedEnergy) {
-                if (creep.pickup(droppedEnergy) === ERR_NOT_IN_RANGE) {
-                    creep.moveTo(droppedEnergy, { visualizePathStyle: { stroke: '#ffaa00' } });
+            if (target) {
+                if (creep.pickup(target) === ERR_NOT_IN_RANGE) {
+                    creep.moveTo(target, { visualizePathStyle: { stroke: '#ffaa00' } });
                 }
             }
         }
