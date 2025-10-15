@@ -8,7 +8,7 @@ const cleanMemories = {
                 console.log('Clearing non-existing creep memory:', name);
             }
 
-            if (Game.creeps[name].role === 'harvester' && !Game.creeps[name].getObjectById(Game.creeps[name].memory.harvestingTarget)) {
+            if (Game.creeps[name].role == 'harvester' && !Game.creeps[name].getObjectById(Game.creeps[name].memory.harvestingTarget)) {
                 delete Memory.creeps[name].harvestingTarget;
                 console.log('Clearing invalid harvesting target for creep:', name);
             }
