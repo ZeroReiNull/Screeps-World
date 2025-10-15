@@ -15,7 +15,7 @@ const autoSpawn = require('autoSpawn');
 const minerAssignments = require('role.miner.assignments');
 
 const myRooms = [
-    'W18S52',
+    'W17S52',
 ];
 
 module.exports.loop = function () {
@@ -29,7 +29,7 @@ module.exports.loop = function () {
     // Utility
     cleanMemories.run();
     autoSpawn.run();
-    
+
     for (const roomName of myRooms) {
         minerAssignments.run(roomName);
     }
