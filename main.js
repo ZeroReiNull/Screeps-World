@@ -5,6 +5,7 @@ const roleBuilder = require ('role.builder');
 const roleMiner = require('role.miner');
 const roleRepairerRoadie = require('role.repairer.roadie');
 const roleEmergencyCreep = require('role.emergencyCreep');
+const roleRepairerWallRampart = require('role.repairer.wallRampart');
 
 // Structure Modules
 const structureTower = require('structure.tower');
@@ -58,6 +59,9 @@ module.exports.loop = function () {
                 continue;
             case 'emergencyCreep':
                 roleEmergencyCreep.run(creep);
+                continue;
+            case 'wallRampartRepairer':
+                roleRepairerWallRampart.run(creep);
                 continue;
         }
     }

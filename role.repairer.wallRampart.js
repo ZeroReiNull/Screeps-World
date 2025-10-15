@@ -1,4 +1,4 @@
-const roleRepairerRoadie = {
+const roleRepairerWallRampart = {
     run : function(creep) {
 
         if (creep.memory.repairing && creep.store[RESOURCE_ENERGY] == 0) {
@@ -12,16 +12,15 @@ const roleRepairerRoadie = {
         if (creep.memory.repairing) {
             const targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    // The structure must be a road and have less than its maximum hit points.
-                    return (structure.structureType === STRUCTURE_ROAD && structure.hits < structure.hitsMax);
+                    return (structure.structureType === STRUCTURE_WALL ||
+                        structure.structureType === STRUCTURE_RAMPART)
+                        && structure.hits < structure.hitsMax;
                 }
             });
 
-            // Prioritize the most damaged roads first to prevent them from decaying.
             targets.sort((a, b) => a.hits - b.hits);
 
             if (targets.length > 0) {
-                // Try to repair the most damaged road.
                 if (creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
                 }
@@ -40,4 +39,4 @@ const roleRepairerRoadie = {
     }
 };
 
-module.exports = roleRepairerRoadie;
+module.exports = roleRepairerWallRampart;

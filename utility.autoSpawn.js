@@ -7,6 +7,7 @@ const upgraderNum = 1;
 const builderNum = 1;
 const minerNum = 2;
 const roadieNum = 0;
+const wallRampartRepairerNum = 0;
 
 // Creep body configurations
 const harvesterBody = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -14,7 +15,7 @@ const upgraderBody = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE];
 const builderBody = [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
 const minerBody = [WORK, WORK, WORK, WORK, WORK, MOVE];
 const roadieBody = [WORK, CARRY, MOVE, MOVE];
-// const basicCombatCreepBody = [TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK, ATTACK];
+const wallRampartRepairerBody = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE];
 
 // Priority order for spawning creeps
 const spawnPriority = [
@@ -22,7 +23,8 @@ const spawnPriority = [
     'harvester',
     'upgrader',
     'builder',
-    'roadie'
+    'roadie',
+    'wallRampartRepairer'
 ];
 
 function getBodyCost(body) {
@@ -106,6 +108,10 @@ const autoSpawn = {
                 case 'roadie':
                     numCreeps = roadieNum;
                     body = roadieBody;
+                    break;
+                case 'wallRampartRepairer':
+                    numCreeps = wallRampartRepairerNum;
+                    body = wallRampartRepairerBody;
                     break;
                 default:
                     console.log('Unknown role: ' + role);
