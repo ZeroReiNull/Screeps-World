@@ -13,7 +13,9 @@ const structureTower = require('structure.tower');
 const cleanMemories = require('cleanMemories');
 const autoSpawn = require('autoSpawn');
 const minerAssignments = require('role.miner.assignments');
+const harvesterAssignments = require('role.harvester.assignments');
 
+// Rooms to manage
 const myRooms = [
     'W17S52',
 ];
@@ -32,6 +34,7 @@ module.exports.loop = function () {
 
     for (const roomName of myRooms) {
         minerAssignments.run(Game.rooms[roomName]);
+        harvesterAssignments.run(Game.rooms[roomName]);
     }
 
     // Creep
