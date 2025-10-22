@@ -49,6 +49,7 @@ const spawnPriority = [
     'wallRampartRepairer'
 ];
 
+
 function bodyGenerator(bodyConfig) {
     const body = [];
     for (const [part, count] of Object.entries(bodyConfig)) {
