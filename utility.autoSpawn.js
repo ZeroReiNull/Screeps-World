@@ -4,7 +4,7 @@ const stopSpawning = false;
 // Desired number of creeps per role
 const harvesterNum = 2;
 const upgraderNum = 1;
-const builderNum = 1;
+const builderNum = 2;
 const minerNum = 2;
 const roadieNum = 0;
 const wallRampartRepairerNum = 5;
