@@ -50,9 +50,14 @@ const spawnPriority = [
 ];
 
 function bodyGenerator(bodyConfig) {
-    return Object.entries(bodyConfig).flatMap(([part, count]) => 
-        Array(count).fill(part.toLowerCase())
-    );
+    const body = [];
+    for (const [part, count] of Object.entries(bodyConfig)) {
+        const lowerCasePart = part.toLowerCase();
+        for (let i = 0; i < count; i++) {
+            body.push(lowerCasePart);
+        }
+    }
+    return body;
 }
 
 function getBodyCost(body) {
