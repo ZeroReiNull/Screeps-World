@@ -10,12 +10,34 @@ const roadieNum = 0;
 const wallRampartRepairerNum = 5;
 
 // Creep body configurations
-const harvesterBody = [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE];
-const upgraderBody = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE];
-const builderBody = [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
-const minerBody = [WORK, WORK, WORK, WORK, WORK, MOVE];
-const roadieBody = [WORK, CARRY, MOVE, MOVE];
-const wallRampartRepairerBody = [WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
+const harvesterBody = {
+    'CARRY': 24,
+    'MOVE': 12
+};
+const upgraderBody = {
+    'WORK': 17,
+    'CARRY': 1,
+    'MOVE': 1
+};
+const builderBody = {
+    'WORK': 9,
+    'CARRY': 9,
+    'MOVE': 9
+};
+const minerBody = {
+    'WORK': 6,
+    'MOVE': 1
+};
+const roadieBody = {
+    'WORK': 6,
+    'CARRY': 12,
+    'MOVE': 12
+};
+const wallRampartRepairerBody = {
+    'WORK': 12,
+    'CARRY': 6,
+    'MOVE': 6
+};
 
 // Priority order for spawning creeps
 const spawnPriority = [
@@ -26,6 +48,12 @@ const spawnPriority = [
     'roadie',
     'wallRampartRepairer'
 ];
+
+function bodyGenerator(bodyConfig) {
+    return Object.entries(bodyConfig).flatMap(([part, count]) => 
+        Array(count).fill(part.toLowerCase())
+    );
+}
 
 function getBodyCost(body) {
     return _.sum(body, part => BODYPART_COST[part]);
@@ -87,31 +115,31 @@ const autoSpawn = {
             switch(role) {
                 case 'harvester':
                     numCreeps = harvesterNum;
-                    body = harvesterBody;
+                    body = bodyGenerator(harvesterBody);
                     break;
                 case 'upgrader':
                     numCreeps = upgraderNum;
-                    body = upgraderBody;
+                    body = bodyGenerator(upgraderBody);
                     break;
                 case 'builder':
                     numCreeps = builderNum;
-                    body = builderBody;
+                    body = bodyGenerator(builderBody);
                     break;
                 case 'miner':
                     numCreeps = minerNum;
-                    body = minerBody;
+                    body = bodyGenerator(minerBody);
                     break;
                 case 'repairer':
                     numCreeps = repairerNum;
-                    body = repairerBody;
+                    body = bodyGenerator(repairerBody);
                     break;
                 case 'roadie':
                     numCreeps = roadieNum;
-                    body = roadieBody;
+                    body = bodyGenerator(roadieBody);
                     break;
                 case 'wallRampartRepairer':
                     numCreeps = wallRampartRepairerNum;
-                    body = wallRampartRepairerBody;
+                    body = bodyGenerator(wallRampartRepairerBody);
                     break;
                 default:
                     console.log('Unknown role: ' + role);
