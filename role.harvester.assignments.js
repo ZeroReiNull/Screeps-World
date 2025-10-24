@@ -2,9 +2,7 @@ const harvesterAssignments = {
     run: function(room) {
         
         // 1. Get all permanent energy sources in the room.
-        const availableSources = room.find(FIND_DROPPED_RESOURCES, {
-            filter: (source) => !assignedSourceIds.includes(source.id)
-        });
+        const availableSources = room.find(FIND_DROPPED_RESOURCES).filter(source => source.resourceType === RESOURCE_ENERGY);
 
         // 2. Get all creeps in this room with the 'harvester' role.
         const harvesters = _.filter(Game.creeps, (creep) =>
