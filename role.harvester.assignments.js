@@ -1,46 +1,50 @@
-const assignExistingHarvesters = {
+const harvesterAssignments = {
     run: function(room) {
-        // 1. Find all harvesters in the room that don't have a harvestingTarget yet.
-        const unassignedHarvesters = _.filter(Game.creeps, (creep) =>
-            creep.memory.role === 'harvester' &&
-            !creep.memory.harvestingTarget &&
-            creep.room.name === room.name
-        );
-
-        // If there are no harvesters needing assignment, we're done.
-        if (unassignedHarvesters.length === 0) {
-            return;
-        }
-
-        // 2. Find all source IDs that are already being worked on by other harvesters.
-        const assignedSourceIds = _.map(
-            _.filter(Game.creeps, (creep) =>
-                creep.memory.role === 'harvester' &&
-                creep.memory.harvestingTarget &&
-                creep.room.name === room.name
-            ),
-            (creep) => creep.memory.harvestingTarget
-        );
-
-        // 3. Find all dropped resources in the room that are NOT in the list of assigned sources.
+        
+        // 1. Get all permanent energy sources in the room.
         const availableSources = room.find(FIND_DROPPED_RESOURCES, {
             filter: (source) => !assignedSourceIds.includes(source.id)
         });
 
-        // 4. Assign each unassigned harvester to an available dropped resource.
-        for (let i = 0; i < unassignedHarvesters.length; i++) {
-            // If there are available dropped resources...
-            if (i < availableSources.length) {
-                const harvester = unassignedHarvesters[i];
-                const resource = availableSources[i];
+        // 2. Get all creeps in this room with the 'harvester' role.
+        const harvesters = _.filter(Game.creeps, (creep) =>
+            creep.memory.role === 'harvester' &&
+            creep.room.name === room.name
+        );
 
-                // Assign the resource's ID to the harvester's memory.
-                harvester.memory.harvestingTarget = resource.id;
-            } else {
-                break;
+        // 3. Count how many harvesters are *already* assigned to each source ID.
+        // The result will be an object like: { 'sourceId_A': 2, 'sourceId_B': 1 }
+        const sourceCounts = _.countBy(harvesters, (creep) => creep.memory.harvestingTarget);
+
+        // 4. Find all harvesters that don't have a 'harvestingTarget'
+        const unassignedHarvesters = _.filter(harvesters, (creep) => !creep.memory.harvestingTarget);
+
+        // 5. Loop through each unassigned harvester and try to find it a source.
+        for (const harvester of unassignedHarvesters) {
+            
+            // 6. Loop through each source and check its count.
+            for (const source of availableSources) {
+                
+                // Get the current count for this source. 
+                // Use '|| 0' to handle sources that have 0 harvesters (and aren't in sourceCounts).
+                const currentCount = sourceCounts[source.id] || 0;
+
+                // 7. If this source has less than 2 harvesters, assign it!
+                if (currentCount < 2) {
+                    harvester.memory.harvestingTarget = source.id;
+                    
+                    // IMPORTANT: Update our local count for the next harvester in the loop.
+                    // This prevents us from assigning all new harvesters to the same source.
+                    sourceCounts[source.id] = currentCount + 1;
+                    
+                    // This harvester is assigned, so we can stop checking sources for it.
+                    break; 
+                }
             }
+            // If the loop finishes without a 'break', the harvester remains unassigned
+            // (because all sources were full).
         }
     }
 };
 
-module.exports = assignExistingHarvesters;
+module.exports = harvesterAssignments;
