@@ -11,11 +11,11 @@ const wallRampartRepairerNum = 0;
 
 // Creep body configurations
 const harvesterBody = {
-    'CARRY': 3,
-    'MOVE': 3
+    'CARRY': 24,
+    'MOVE': 12
 };
 const upgraderBody = {
-    'WORK': 5,
+    'WORK': 17,
     'CARRY': 1,
     'MOVE': 1
 };
@@ -25,7 +25,7 @@ const builderBody = {
     'MOVE': 9
 };
 const minerBody = {
-    'WORK': 5,
+    'WORK': 6,
     'MOVE': 1
 };
 const roadieBody = {
